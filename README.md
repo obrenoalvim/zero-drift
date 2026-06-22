@@ -30,6 +30,8 @@ The AI reads your name from `git config user.name` or your `CLAUDE.md`. If it fi
 ### 2. Living Task Document
 Each task gets a `TASK.md` in the project root. After every meaningful prompt the AI records what it did, what broke, what it fixed, and where things stand now.
 
+The Log is a record, not a diary. The AI does not get to assert "fixed X" — it shows proof: the command run, its output, the exit code. No proof, no Log entry; unproven work goes to `Unverified / Pending`. `Current State` may only claim something works if that proof sits in the Log. When context degrades the model drifts toward fluency before truth, so the evidence rule is what keeps a handoff trustworthy instead of a plausible story.
+
 When the context fills up, open a new session and tell it:
 > "Read the TASK.md and continue."
 
@@ -52,16 +54,20 @@ What we're building or fixing.
 
 ## Log
 ### YYYY-MM-DD
-- Did X using Y
-- Fixed Z (was doing W, now does V)
+- Added retry to fetchUser() — `npm test auth` -> 12 passed, exit 0
+- Fixed null deref in parse() — `cargo test parse` -> ok. 3 passed, exit 0
+
+## Unverified / Pending
+- Refactored cache layer — NOT tested yet, no proof
 
 ## Errors & Fixes
-| Error | Cause | Fix |
-|-------|-------|-----|
+| Error | Cause | Fix | Evidence |
+|-------|-------|-----|----------|
 
 ## Current State
 Handoff paragraph for a fresh instance. Rewrite it each time so it always
-describes right now.
+describes right now. Only claim something works if its proof is in the Log;
+otherwise say "implemented, not verified".
 ```
 
 ---

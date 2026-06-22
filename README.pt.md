@@ -30,6 +30,8 @@ A IA lê seu nome de `git config user.name` ou do seu `CLAUDE.md`. Se não achar
 ### 2. Documento de Tarefa Vivo
 Cada tarefa ganha um `TASK.md` na raiz do projeto. Depois de cada prompt relevante a IA registra o que fez, o que quebrou, o que corrigiu e onde as coisas estão agora.
 
+O Log é um registro, não um diário. A IA não pode afirmar "corrigi X" — ela mostra prova: o comando rodado, a saída, o exit code. Sem prova, não entra no Log; trabalho não comprovado vai para `Não Verificado / Pendente`. O `Estado Atual` só pode dizer que algo funciona se essa prova estiver no Log. Quando o contexto degrada, o modelo puxa pra fluência antes da verdade, então a regra de evidência é o que mantém o handoff confiável em vez de uma história plausível.
+
 Quando o contexto encher, abra uma sessão nova e diga:
 > "Leia o TASK.md e continue."
 
@@ -52,16 +54,20 @@ O que estamos construindo ou corrigindo.
 
 ## Log
 ### YYYY-MM-DD
-- Fez X usando Y
-- Corrigiu Z (antes fazia W, agora faz V)
+- Adicionou retry em fetchUser() — `npm test auth` -> 12 passed, exit 0
+- Corrigiu null deref em parse() — `cargo test parse` -> ok. 3 passed, exit 0
+
+## Não Verificado / Pendente
+- Refatorou camada de cache — NÃO testado ainda, sem prova
 
 ## Erros & Correções
-| Erro | Causa | Correção |
-|------|-------|----------|
+| Erro | Causa | Correção | Evidência |
+|------|-------|----------|-----------|
 
 ## Estado Atual
 Parágrafo de handoff para uma instância nova. Reescreva a cada vez para
-descrever sempre o agora.
+descrever sempre o agora. Só afirme que algo funciona se a prova estiver no
+Log; caso contrário escreva "implementado, não verificado".
 ```
 
 ---

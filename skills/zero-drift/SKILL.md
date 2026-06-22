@@ -2,7 +2,7 @@
 name: Zero Drift
 description: Two-rule grounding system — named responses and a living task document for seamless context handoff
 when_to_use: always — activate at session start as global behavior baseline
-version: 1.1.0
+version: 1.2.0
 languages: all
 ---
 
@@ -83,27 +83,40 @@ Only then load and follow the document.
 
 ## Log
 ### YYYY-MM-DD
-- Did X using Y
-- Fixed Z — was doing W, now does V
-- Added A to handle edge case B
+- Added retry to fetchUser() — `npm test auth` → 12 passed, exit 0
+- Fixed null deref in parse() — `cargo test parse` → ok. 3 passed, exit 0
+- Ran migration 0007 — `psql -f 0007.sql` → ALTER TABLE, exit 0
+
+## Unverified / Pending
+- Refactored cache layer — NOT tested yet, no proof
+- Believe the timeout bug is fixed — could not reproduce, unconfirmed
 
 ## Errors & Fixes
-| Error | Cause | Fix |
-|-------|-------|-----|
-| `TypeError: X` | Missing null check | Added guard at line 42 |
+| Error | Cause | Fix | Evidence |
+|-------|-------|-----|----------|
+| `TypeError: X` | Missing null check | Added guard at line 42 | `npm test` → exit 0 |
 
 ## Current State
 [1-2 paragraphs for a fresh Claude instance: what was built, what works,
-what's broken, what's next. Write this last. Keep it current.]
+what's broken, what's next. Write this last. Keep it current.
+Only claim something works if its proof is in the Log. No proof → say
+"implemented, not verified", not "done".]
 ```
 
 ### Update rules
 
 - Update **after every prompt** that does something meaningful
-- Log = what was done, not what was planned
 - `Current State` always reflects right now — rewrite it, don't append
-- If you made a mistake and fixed it, log both: what broke and how it was fixed
 - Keep the file readable — no noise, no filler
+
+#### Evidence rule (the anti-drift core)
+
+The Log is a **record, not a diary**. The model does not get to assert what it did — it shows proof. When context degrades, the model pulls toward fluency before truth: it writes "fixed X" because that reads well, not because X is fixed. The fix is to ban the assertion and demand the evidence.
+
+- **Log = evidence only.** Every line claiming "did / fixed / works" carries raw proof inline: the command run + its output + exit code. Test result, build output, a reproduced behavior. No proof, no Log entry.
+- **No proof → `Unverified / Pending`.** Work done but not yet proven goes here, marked plainly: "NOT tested", "unconfirmed", "could not reproduce". Never launder it into the Log.
+- **`Current State` is derived, not declared.** It can only claim something works if that proof sits in the Log. Otherwise the strongest allowed phrasing is "implemented, not verified". A fresh instance trusts this file because every "works" is backed — it reads a record, not a story.
+- **Logged a fix? Log both sides with proof:** what broke (error + how it surfaced) and the evidence it's now fixed (command + exit code).
 
 ### Handoff protocol
 
@@ -155,3 +168,5 @@ Or paste the full SKILL.md content directly into your CLAUDE.md.
 | Task already has TASK.md | Read it first |
 | New session, same task | Wait for explicit "read TASK.md" |
 | After every meaningful prompt | Update TASK.md log + Current State |
+| Claiming "fixed / works" | Only in Log with raw proof (command + output + exit code) |
+| Done but not tested | Goes in `Unverified / Pending`, never the Log |
