@@ -1,5 +1,7 @@
 # Zero Drift
 
+[🇧🇷 Leia em Português](README.pt.md)
+
 **Stop losing context. Stop repeating yourself. Stop starting over.**
 
 Zero Drift is a Claude Code skill that keeps your AI assistant grounded across every session — with three simple rules applied from the first response to the last.
