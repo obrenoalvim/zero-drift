@@ -2,43 +2,41 @@
 
 [🇺🇸 Read in English](README.md)
 
-**Sem drift de contexto. Sem repetição. Sem recomeçar do zero.**
-
-Zero Drift é uma skill para Claude Code que mantém seu assistente de IA ancorado em toda sessão — com três regras simples aplicadas desde a primeira até a última resposta.
+Uma skill para Claude Code que mantém sua IA ancorada em sessões longas. Três regras, da primeira resposta até a última.
 
 ---
 
 ## O Problema
 
-Sessões longas quebram. O contexto enche. Você abre uma nova instância do Claude e passa 10 minutos re-explicando o que estava fazendo. A IA deriva, alucina o que foi feito, esquece o que foi decidido.
+Sessões longas degradam. A janela de contexto enche, você abre uma instância nova do Claude e gasta dez minutos re-explicando o que estava fazendo. A essa altura a IA já começou a derivar: inventa trabalho que nunca fez e esquece decisões que você já tomou.
 
-Zero Drift resolve isso.
+Zero Drift te dá como perceber a deriva cedo e fazer o handoff limpo.
 
 ---
 
 ## As Três Regras
 
 ### 1. Resposta com Nome
-Toda resposta começa com o seu nome. Mantém as respostas pessoais e identificáveis em logs longos.
+A IA abre toda resposta com o seu nome. Isso mantém as respostas pessoais e fáceis de localizar num log longo.
 
 ```
-Breno: o bug de auth está em middleware.ts:42 — o token expiry usa < em vez de <=.
+Breno: o bug de auth está em middleware.ts:42, o token expiry usa < em vez de <=.
 ```
 
-A IA detecta seu nome automaticamente via `git config user.name` ou seu `CLAUDE.md`. Se não encontrar, pergunta uma vez.
+A IA lê seu nome de `git config user.name` ou do seu `CLAUDE.md`. Se não achar nada, pergunta uma vez.
 
-**Por que isso importa — é um detector de alucinação.** Quando a IA começa a derivar ou alucinar, o nome é a primeira coisa que quebra: some, muda, ou fica estranho. No momento que você notar isso, a sessão está degradando. Pare, abra uma nova janela, diga *"leia o TASK.md e continue"*, e retome limpo de onde parou.
+**O nome é seu detector de alucinação.** Quando o modelo começa a derivar, o nome quebra primeiro: some, muda, ou soa um pouco fora. Esse é o seu sinal de que a sessão está degradando. Abra uma janela nova, diga *"leia o TASK.md e continue"*, e retome de um estado limpo.
 
 ### 2. Idioma da Pergunta
-A IA sempre responde no idioma em que você perguntou. Pergunta em português, recebe em português. Pergunta em inglês, recebe em inglês. Sem configuração. Sem drift.
+A IA responde no idioma em que você perguntou. Pergunta em português, recebe português. Pergunta em inglês, recebe inglês. Você não configura nada.
 
 ### 3. Documento de Tarefa Vivo
-Toda tarefa específica ganha um `TASK.md` na raiz do projeto. A IA escreve nele após cada prompt relevante — o que foi feito, o que quebrou, o que foi corrigido e um resumo claro do estado atual.
+Cada tarefa ganha um `TASK.md` na raiz do projeto. Depois de cada prompt relevante a IA registra o que fez, o que quebrou, o que corrigiu e onde as coisas estão agora.
 
-Quando o contexto encher, abra uma nova sessão e diga:
+Quando o contexto encher, abra uma sessão nova e diga:
 > "Leia o TASK.md e continue."
 
-Só isso. Contexto completo restaurado.
+A instância nova lê o arquivo e retoma de onde a anterior parou.
 
 ---
 
@@ -58,14 +56,15 @@ O que estamos construindo ou corrigindo.
 ## Log
 ### YYYY-MM-DD
 - Fez X usando Y
-- Corrigiu Z — antes fazia W, agora faz V
+- Corrigiu Z (antes fazia W, agora faz V)
 
 ## Erros & Correções
 | Erro | Causa | Correção |
 |------|-------|----------|
 
 ## Estado Atual
-Parágrafo de handoff para nova instância. Sempre atualizado. Reescrito, não acumulado.
+Parágrafo de handoff para uma instância nova. Reescreva a cada vez para
+descrever sempre o agora.
 ```
 
 ---
@@ -74,7 +73,7 @@ Parágrafo de handoff para nova instância. Sempre atualizado. Reescrito, não a
 
 ### Opção A — Cole no CLAUDE.md (global, qualquer IA)
 
-Adicione em `~/.claude/CLAUDE.md` (ou `CLAUDE.md` no seu projeto):
+Adicione isto em `~/.claude/CLAUDE.md`, ou num `CLAUDE.md` no seu projeto:
 
 ```markdown
 # Zero Drift
@@ -85,43 +84,43 @@ Siga as regras da skill Zero Drift:
 Regras completas: https://github.com/obrenoalvim/zero-drift/blob/main/skills/zero-drift/SKILL.md
 ```
 
-### Opção B — Aponte a IA direto para este repositório
+### Opção B — Aponte a IA para este repositório
 
 Inicie uma sessão e diga:
 > "Leia https://github.com/obrenoalvim/zero-drift e siga a skill Zero Drift."
 
-A IA lê o SKILL.md e aplica as três regras imediatamente.
+A IA lê o SKILL.md e aplica as três regras.
 
 ### Opção C — Copie o arquivo da skill
 
-Copie `skills/zero-drift/SKILL.md` para o seu diretório de skills e carregue pelo seu sistema de plugins (superpowers, etc.).
+Copie `skills/zero-drift/SKILL.md` para o seu diretório de skills e carregue pelo seu sistema de plugins, como o superpowers.
 
 ---
 
 ## Handoff de Contexto
 
-O fluxo principal para projetos longos:
+O fluxo que carrega um projeto longo entre instâncias:
 
-1. Sessão enche → IA atualiza `Estado Atual` no TASK.md
-2. Abre nova sessão do Claude Code
-3. Diz: **"Leia o TASK.md e continue"**
-4. IA lê, confirma o estado, continua exatamente de onde parou
+1. A sessão enche, então a IA atualiza `Estado Atual` no TASK.md
+2. Você abre uma sessão nova do Claude Code
+3. Você diz: **"Leia o TASK.md e continue"**
+4. A IA lê o arquivo, confirma onde as coisas estão e retoma dali
 
-Sem re-explicar. Sem contexto repetido. Sem drift.
+Você pula o re-explicar e a IA pula o adivinhar.
 
 ---
 
 ## Compatibilidade
 
-Funciona com qualquer IA que consiga ler markdown:
+Funciona com qualquer IA que leia markdown:
 - Claude Code (claude.ai/code)
 - Cursor
 - GitHub Copilot (via AGENTS.md)
 - Codex
-- Qualquer uso da API Claude
+- A API Claude
 
 ---
 
 ## Contribuindo
 
-Encontrou uma lacuna nas regras? Caso não coberto? Abra um PR — o SKILL.md é a fonte da verdade.
+Achou uma lacuna nas regras, ou um caso que a skill não cobre? Abra um PR. O SKILL.md é a fonte da verdade.

@@ -2,43 +2,41 @@
 
 [🇧🇷 Leia em Português](README.pt.md)
 
-**Stop losing context. Stop repeating yourself. Stop starting over.**
-
-Zero Drift is a Claude Code skill that keeps your AI assistant grounded across every session — with three simple rules applied from the first response to the last.
+A Claude Code skill that keeps your AI grounded across long sessions. Three rules, applied from the first response to the last.
 
 ---
 
 ## The Problem
 
-Long sessions break down. Context fills up. You open a new Claude instance and spend 10 minutes re-explaining what you were doing. The AI drifts, hallucinates what was done, forgets what was decided.
+Long sessions break down. The context window fills up, so you open a fresh Claude instance and burn ten minutes re-explaining what you were doing. By then the AI has started drifting: it invents work it never did and forgets decisions you already made.
 
-Zero Drift fixes this.
+Zero Drift gives you a way to catch the drift early and hand off cleanly.
 
 ---
 
 ## The Three Rules
 
 ### 1. Named Response
-Every reply starts with your name. Keeps responses personal and immediately identifiable in long logs.
+The AI opens every reply with your name. This keeps replies personal and easy to scan in a long log.
 
 ```
-Breno: the auth bug is in middleware.ts:42 — token expiry uses < instead of <=.
+Breno: the auth bug is in middleware.ts:42, token expiry uses < instead of <=.
 ```
 
-The AI detects your name automatically from `git config user.name` or your `CLAUDE.md`. If it can't find it, it asks once.
+The AI reads your name from `git config user.name` or your `CLAUDE.md`. If it finds nothing, it asks you once.
 
-**Why this matters — it's a hallucination detector.** When the AI starts drifting or hallucinating, the name is the first thing to break: it gets dropped, changed, or feels off. The moment you notice that, the session is degrading. Stop, open a new window, say *"read the TASK.md and continue"*, and pick up clean from where you left off.
+**The name is your hallucination detector.** When the model starts to drift, the name breaks first: it drops, changes, or reads slightly off. That is your signal the session is degrading. Open a new window, say *"read the TASK.md and continue"*, and resume from a clean state.
 
 ### 2. Language Match
-The AI always replies in the language you asked in. Ask in Portuguese, get Portuguese. Ask in English, get English. No configuration. No drift.
+The AI answers in the language you asked in. Ask in Portuguese, get Portuguese. Ask in English, get English. You configure nothing.
 
 ### 3. Living Task Document
-Every specific task gets a `TASK.md` in the project root. The AI writes to it after every meaningful prompt — what was done, what broke, what was fixed, and a clear summary of the current state.
+Each task gets a `TASK.md` in the project root. After every meaningful prompt the AI records what it did, what broke, what it fixed, and where things stand now.
 
-When your context fills up, open a new session and say:
+When the context fills up, open a new session and tell it:
 > "Read the TASK.md and continue."
 
-That's it. Full context restored.
+The new instance reads the file and picks up where the last one stopped.
 
 ---
 
@@ -58,14 +56,15 @@ What we're building or fixing.
 ## Log
 ### YYYY-MM-DD
 - Did X using Y
-- Fixed Z — was doing W, now does V
+- Fixed Z (was doing W, now does V)
 
 ## Errors & Fixes
 | Error | Cause | Fix |
 |-------|-------|-----|
 
 ## Current State
-Fresh-instance handoff paragraph. Always current. Rewritten, not appended.
+Handoff paragraph for a fresh instance. Rewrite it each time so it always
+describes right now.
 ```
 
 ---
@@ -74,7 +73,7 @@ Fresh-instance handoff paragraph. Always current. Rewritten, not appended.
 
 ### Option A — Paste into CLAUDE.md (global, any AI)
 
-Add to `~/.claude/CLAUDE.md` (or `CLAUDE.md` in your project):
+Add this to `~/.claude/CLAUDE.md`, or to a `CLAUDE.md` in your project:
 
 ```markdown
 # Zero Drift
@@ -85,29 +84,29 @@ Follow the Zero Drift skill rules:
 Full rules: https://github.com/obrenoalvim/zero-drift/blob/main/skills/zero-drift/SKILL.md
 ```
 
-### Option B — Point the AI directly at this repo
+### Option B — Point the AI at this repo
 
 Start a session and say:
 > "Read https://github.com/obrenoalvim/zero-drift and follow the Zero Drift skill."
 
-The AI reads the SKILL.md and applies all three rules immediately.
+The AI reads the SKILL.md and applies the three rules.
 
 ### Option C — Copy the skill file
 
-Copy `skills/zero-drift/SKILL.md` into your own skills directory and load it through your plugin system (superpowers, etc.).
+Copy `skills/zero-drift/SKILL.md` into your own skills directory and load it through your plugin system, such as superpowers.
 
 ---
 
 ## Context Handoff
 
-The key workflow for long projects:
+The workflow that carries a long project across instances:
 
-1. Session fills up → AI updates `Current State` in TASK.md
-2. Open new Claude Code session
-3. Say: **"Read the TASK.md and continue"**
-4. AI reads, confirms state, picks up exactly where you left off
+1. The session fills up, so the AI updates `Current State` in TASK.md
+2. You open a new Claude Code session
+3. You say: **"Read the TASK.md and continue"**
+4. The AI reads the file, confirms where things stand, and resumes from there
 
-No re-explaining. No repeated context. No drift.
+You skip the re-explaining and the AI skips the guessing.
 
 ---
 
@@ -118,10 +117,10 @@ Works with any AI that can read a markdown file:
 - Cursor
 - GitHub Copilot (via AGENTS.md)
 - Codex
-- Any Claude API usage
+- The Claude API
 
 ---
 
 ## Contributing
 
-Found a gap in the rules? Edge case not covered? Open a PR — the SKILL.md is the source of truth.
+Found a gap in the rules, or an edge case the skill misses? Open a PR. The SKILL.md is the source of truth.
