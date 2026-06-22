@@ -66,11 +66,26 @@ descrever sempre o agora.
 
 ---
 
-## Como Usar
+## Instalação
 
-### Opção A — Cole no CLAUDE.md (global, qualquer IA)
+### Recomendado — Instale como plugin (global, automático)
 
-Adicione isto em `~/.claude/CLAUDE.md`, ou num `CLAUDE.md` no seu projeto:
+Esta é a **única** opção que liga o Zero Drift sozinho em **toda** sessão. O plugin embarca um hook `SessionStart` que injeta as regras em cada janela nova do Claude Code, então você nunca invoca nada nem configura nada por sessão.
+
+```
+/plugin marketplace add obrenoalvim/zero-drift
+/plugin install zero-drift@zero-drift
+```
+
+Depois abra uma janela nova do Claude Code. A partir daí, toda sessão começa com o Zero Drift ativo: respostas abrem com seu nome e tarefas ganham um `TASK.md`. Para confirmar que carregou, veja se a primeira resposta numa janela nova começa com seu nome.
+
+> **Nota sobre os termos:** *plugin* é o pacote; o hook `SessionStart` dentro dele é o que torna o comportamento *global e automático*. Instalar o plugin te dá os dois. As opções manuais abaixo deixam a skill disponível mas **não** a ativam sozinhas.
+
+### Alternativas manuais (sem plugin)
+
+Funcionam sem instalar o plugin, mas exigem configuração e não ativam globalmente sozinhas.
+
+**Cole no CLAUDE.md** — adicione isto em `~/.claude/CLAUDE.md` (global) ou num `CLAUDE.md` do projeto:
 
 ```markdown
 # Zero Drift
@@ -80,16 +95,12 @@ Siga as regras da skill Zero Drift:
 Regras completas: https://github.com/obrenoalvim/zero-drift/blob/main/skills/zero-drift/SKILL.md
 ```
 
-### Opção B — Aponte a IA para este repositório
-
-Inicie uma sessão e diga:
+**Aponte a IA para este repositório** — inicie uma sessão e diga:
 > "Leia https://github.com/obrenoalvim/zero-drift e siga a skill Zero Drift."
 
-A IA lê o SKILL.md e aplica as três regras.
+A IA lê o SKILL.md e aplica as duas regras.
 
-### Opção C — Copie o arquivo da skill
-
-Copie `skills/zero-drift/SKILL.md` para o seu diretório de skills e carregue pelo seu sistema de plugins, como o superpowers.
+**Copie o arquivo da skill** — copie `skills/zero-drift/SKILL.md` para o seu diretório de skills e carregue pelo seu sistema de plugins, como o superpowers.
 
 ---
 

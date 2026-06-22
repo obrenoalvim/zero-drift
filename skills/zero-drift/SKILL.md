@@ -123,11 +123,18 @@ On that trigger:
 
 ## Activation
 
-To use this skill globally, add to `~/.claude/CLAUDE.md`:
+Recommended — install as a plugin so a `SessionStart` hook activates these rules in every session automatically:
+
+```
+/plugin marketplace add obrenoalvim/zero-drift
+/plugin install zero-drift@zero-drift
+```
+
+Manual fallback — paste this into `~/.claude/CLAUDE.md`:
 
 ```markdown
 # Zero Drift Skill
-Always follow the Zero Drift rules from: https://github.com/[your-username]/zero-drift
+Always follow the Zero Drift rules from: https://github.com/obrenoalvim/zero-drift
 
 Rules:
 1. Start every response with the user's name (detect from git config, CLAUDE.md, or ask)
