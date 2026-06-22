@@ -1,0 +1,18 @@
+{
+  "name": "claude-skills",
+  "description": "Personal Claude Code skills collection",
+  "version": "1.0.0",
+  "author": {
+    "name": "Breno Alvim",
+    "email": "brenoalvim.dev@gmail.com"
+  },
+  "homepage": "https://github.com/obrenoalvim/claude-skills",
+  "repository": "https://github.com/obrenoalvim/claude-skills",
+  "license": "MIT",
+  "keywords": [
+    "skills",
+    "automation",
+    "claude-code",
+    "workflows"
+  ]
+}
