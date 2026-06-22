@@ -1,43 +1,123 @@
-# claude-skills
+# Zero Drift
 
-Personal Claude Code skills — compatible with the [superpowers](https://github.com/obra/superpowers) plugin.
+**Stop losing context. Stop repeating yourself. Stop starting over.**
 
-## Structure
+Zero Drift is a Claude Code skill that keeps your AI assistant grounded across every session — with three simple rules applied from the first response to the last.
 
-```
-skills/
-  {category}/
-    {skill-name}/
-      SKILL.md          # Main skill file (required)
-      supporting.*      # Scripts, templates, etc. (optional)
-```
-
-### Categories used
-
-| Category | Purpose |
-|----------|---------|
-| `automation` | Workflow and task automation patterns |
-| `collaboration` | Multi-agent and human-AI collaboration |
-| `debugging` | Debugging techniques and strategies |
-| `development` | Coding and software development patterns |
-| `research` | Research and information gathering |
-
-## SKILL.md frontmatter
-
-```yaml
 ---
-name: Human-Readable Name
-description: One-line summary of what this skill does
-when_to_use: when [trigger/situation that signals this skill applies]
-version: 1.0.0
-languages: all | [typescript, python, ...]
+
+## The Problem
+
+Long sessions break down. Context fills up. You open a new Claude instance and spend 10 minutes re-explaining what you were doing. The AI drifts, hallucinates what was done, forgets what was decided.
+
+Zero Drift fixes this.
+
 ---
+
+## The Three Rules
+
+### 1. Named Response
+Every reply starts with your name. Keeps responses personal and immediately identifiable in long logs.
+
+```
+Breno: the auth bug is in middleware.ts:42 — token expiry uses < instead of <=.
 ```
 
-## Installation with superpowers
+The AI detects your name automatically from `git config user.name` or your `CLAUDE.md`. If it can't find it, it asks once.
 
-If using the superpowers plugin, point `SUPERPOWERS_SKILLS_ROOT` to this directory or symlink the `skills/` folder alongside your other skills.
+### 2. Language Match
+The AI always replies in the language you asked in. Ask in Portuguese, get Portuguese. Ask in English, get English. No configuration. No drift.
+
+### 3. Living Task Document
+Every specific task gets a `TASK.md` in the project root. The AI writes to it after every meaningful prompt — what was done, what broke, what was fixed, and a clear summary of the current state.
+
+When your context fills up, open a new session and say:
+> "Read the TASK.md and continue."
+
+That's it. Full context restored.
+
+---
+
+## TASK.md Structure
+
+```markdown
+# TASK: [Task Name]
+> Created: YYYY-MM-DD | Updated: YYYY-MM-DD HH:MM
+
+## Goal
+What we're building or fixing.
+
+## Plan
+- [x] Done step
+- [ ] Pending step
+
+## Log
+### YYYY-MM-DD
+- Did X using Y
+- Fixed Z — was doing W, now does V
+
+## Errors & Fixes
+| Error | Cause | Fix |
+|-------|-------|-----|
+
+## Current State
+Fresh-instance handoff paragraph. Always current. Rewritten, not appended.
+```
+
+---
+
+## How to Use
+
+### Option A — Paste into CLAUDE.md (global, any AI)
+
+Add to `~/.claude/CLAUDE.md` (or `CLAUDE.md` in your project):
+
+```markdown
+# Zero Drift
+Follow the Zero Drift skill rules:
+1. Start every response with my name (detect from git config or ask)
+2. Reply in the language of the question
+3. For every specific task, maintain TASK.md in the project root and update it after every prompt
+Full rules: https://github.com/obrenoalvim/zero-drift/blob/main/skills/zero-drift/SKILL.md
+```
+
+### Option B — Point the AI directly at this repo
+
+Start a session and say:
+> "Read https://github.com/obrenoalvim/zero-drift and follow the Zero Drift skill."
+
+The AI reads the SKILL.md and applies all three rules immediately.
+
+### Option C — Copy the skill file
+
+Copy `skills/zero-drift/SKILL.md` into your own skills directory and load it through your plugin system (superpowers, etc.).
+
+---
+
+## Context Handoff
+
+The key workflow for long projects:
+
+1. Session fills up → AI updates `Current State` in TASK.md
+2. Open new Claude Code session
+3. Say: **"Read the TASK.md and continue"**
+4. AI reads, confirms state, picks up exactly where you left off
+
+No re-explaining. No repeated context. No drift.
+
+---
+
+## Compatibility
+
+Works with any AI that can read a markdown file:
+- Claude Code (claude.ai/code)
+- Cursor
+- GitHub Copilot (via AGENTS.md)
+- Codex
+- Any Claude API usage
+
+---
 
 ## Contributing
 
-Skills added here are personal/private. For broadly useful skills, consider contributing to [obra/superpowers-skills](https://github.com/obra/superpowers-skills).
+Found a gap in the rules? Edge case not covered? Open a PR — the SKILL.md is the source of truth.

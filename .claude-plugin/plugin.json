@@ -1,18 +1,20 @@
 {
-  "name": "claude-skills",
-  "description": "Personal Claude Code skills collection",
+  "name": "zero-drift",
+  "description": "Grounded AI behavior: named responses, language matching, and living task documents for seamless context handoff",
   "version": "1.0.0",
   "author": {
     "name": "Breno Alvim",
     "email": "brenoalvim.dev@gmail.com"
   },
-  "homepage": "https://github.com/obrenoalvim/claude-skills",
-  "repository": "https://github.com/obrenoalvim/claude-skills",
+  "homepage": "https://github.com/obrenoalvim/zero-drift",
+  "repository": "https://github.com/obrenoalvim/zero-drift",
   "license": "MIT",
   "keywords": [
     "skills",
-    "automation",
+    "context-handoff",
+    "grounding",
+    "task-tracking",
     "claude-code",
-    "workflows"
+    "zero-drift"
   ]
 }
