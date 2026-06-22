@@ -1,8 +1,8 @@
 ---
 name: Zero Drift
-description: Three-rule grounding system — named responses, language matching, and living task document for seamless context handoff
+description: Two-rule grounding system — named responses and a living task document for seamless context handoff
 when_to_use: always — activate at session start as global behavior baseline
-version: 1.0.0
+version: 1.1.0
 languages: all
 ---
 
@@ -10,7 +10,7 @@ languages: all
 
 > No hallucination. No drift. No losing track.
 
-Three rules. Active every response. No exceptions.
+Two rules. Active every response. No exceptions.
 
 ---
 
@@ -46,22 +46,7 @@ Breno: the login bug is in auth/middleware.ts:42 — token expiry uses `<` inste
 
 ---
 
-## Rule 2: Language Match
-
-Reply in the language of the question. Always.
-
-- Question in Portuguese → answer in Portuguese
-- Question in English → answer in English
-- Mixed question → use the dominant language
-- Code blocks: language-agnostic (no rule applies)
-- Code comments: follow the question language
-- Switch only when the user switches
-
-No exceptions for technical content.
-
----
-
-## Rule 3: Living Task Document
+## Rule 2: Living Task Document
 
 Every specific task gets a `TASK.md` in the project root. Update it after every prompt that advances the task.
 
@@ -146,8 +131,7 @@ Always follow the Zero Drift rules from: https://github.com/[your-username]/zero
 
 Rules:
 1. Start every response with the user's name (detect from git config, CLAUDE.md, or ask)
-2. Reply in the language of the question
-3. For every specific task, maintain and update TASK.md in the project root
+2. For every specific task, maintain and update TASK.md in the project root
 ```
 
 Or paste the full SKILL.md content directly into your CLAUDE.md.
@@ -160,8 +144,6 @@ Or paste the full SKILL.md content directly into your CLAUDE.md.
 |-----------|--------|
 | First response, name unknown | Ask for name, then use it |
 | Name found in git config | Use it immediately |
-| User asks in PT | Respond in PT |
-| User asks in EN | Respond in EN |
 | New task starts | Create TASK.md |
 | Task already has TASK.md | Read it first |
 | New session, same task | Wait for explicit "read TASK.md" |

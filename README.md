@@ -2,7 +2,7 @@
 
 [🇧🇷 Leia em Português](README.pt.md)
 
-A Claude Code skill that keeps your AI grounded across long sessions. Three rules, applied from the first response to the last.
+A Claude Code skill that keeps your AI grounded across long sessions. Two rules, applied from the first response to the last.
 
 ---
 
@@ -14,7 +14,7 @@ Zero Drift gives you a way to catch the drift early and hand off cleanly.
 
 ---
 
-## The Three Rules
+## The Two Rules
 
 ### 1. Named Response
 The AI opens every reply with your name. This keeps replies personal and easy to scan in a long log.
@@ -27,10 +27,7 @@ The AI reads your name from `git config user.name` or your `CLAUDE.md`. If it fi
 
 **The name is your hallucination detector.** When the model starts to drift, the name breaks first: it drops, changes, or reads slightly off. That is your signal the session is degrading. Open a new window, say *"read the TASK.md and continue"*, and resume from a clean state.
 
-### 2. Language Match
-The AI answers in the language you asked in. Ask in Portuguese, get Portuguese. Ask in English, get English. You configure nothing.
-
-### 3. Living Task Document
+### 2. Living Task Document
 Each task gets a `TASK.md` in the project root. After every meaningful prompt the AI records what it did, what broke, what it fixed, and where things stand now.
 
 When the context fills up, open a new session and tell it:
@@ -79,8 +76,7 @@ Add this to `~/.claude/CLAUDE.md`, or to a `CLAUDE.md` in your project:
 # Zero Drift
 Follow the Zero Drift skill rules:
 1. Start every response with my name (detect from git config or ask)
-2. Reply in the language of the question
-3. For every specific task, maintain TASK.md in the project root and update it after every prompt
+2. For every specific task, maintain TASK.md in the project root and update it after every prompt
 Full rules: https://github.com/obrenoalvim/zero-drift/blob/main/skills/zero-drift/SKILL.md
 ```
 

@@ -2,7 +2,7 @@
 
 [🇺🇸 Read in English](README.md)
 
-Uma skill para Claude Code que mantém sua IA ancorada em sessões longas. Três regras, da primeira resposta até a última.
+Uma skill para Claude Code que mantém sua IA ancorada em sessões longas. Duas regras, da primeira resposta até a última.
 
 ---
 
@@ -14,7 +14,7 @@ Zero Drift te dá como perceber a deriva cedo e fazer o handoff limpo.
 
 ---
 
-## As Três Regras
+## As Duas Regras
 
 ### 1. Resposta com Nome
 A IA abre toda resposta com o seu nome. Isso mantém as respostas pessoais e fáceis de localizar num log longo.
@@ -27,10 +27,7 @@ A IA lê seu nome de `git config user.name` ou do seu `CLAUDE.md`. Se não achar
 
 **O nome é seu detector de alucinação.** Quando o modelo começa a derivar, o nome quebra primeiro: some, muda, ou soa um pouco fora. Esse é o seu sinal de que a sessão está degradando. Abra uma janela nova, diga *"leia o TASK.md e continue"*, e retome de um estado limpo.
 
-### 2. Idioma da Pergunta
-A IA responde no idioma em que você perguntou. Pergunta em português, recebe português. Pergunta em inglês, recebe inglês. Você não configura nada.
-
-### 3. Documento de Tarefa Vivo
+### 2. Documento de Tarefa Vivo
 Cada tarefa ganha um `TASK.md` na raiz do projeto. Depois de cada prompt relevante a IA registra o que fez, o que quebrou, o que corrigiu e onde as coisas estão agora.
 
 Quando o contexto encher, abra uma sessão nova e diga:
@@ -79,8 +76,7 @@ Adicione isto em `~/.claude/CLAUDE.md`, ou num `CLAUDE.md` no seu projeto:
 # Zero Drift
 Siga as regras da skill Zero Drift:
 1. Comece toda resposta com meu nome (detecte via git config ou pergunte)
-2. Responda no idioma da pergunta
-3. Para toda tarefa específica, mantenha e atualize TASK.md na raiz do projeto
+2. Para toda tarefa específica, mantenha e atualize TASK.md na raiz do projeto
 Regras completas: https://github.com/obrenoalvim/zero-drift/blob/main/skills/zero-drift/SKILL.md
 ```
 

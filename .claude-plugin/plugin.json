@@ -1,7 +1,7 @@
 {
   "name": "zero-drift",
-  "description": "Grounded AI behavior: named responses, language matching, and living task documents for seamless context handoff",
-  "version": "1.0.0",
+  "description": "Grounded AI behavior: named responses and living task documents for seamless context handoff",
+  "version": "1.1.0",
   "author": {
     "name": "Breno Alvim",
     "email": "brenoalvim.dev@gmail.com"
