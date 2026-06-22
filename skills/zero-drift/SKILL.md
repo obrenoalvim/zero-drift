@@ -18,6 +18,8 @@ Three rules. Active every response. No exceptions.
 
 Every reply starts with the user's name.
 
+**Purpose — hallucination detector.** The name is the canary. When the model starts drifting or hallucinating, the name is the first thing to break: dropped, altered, or off-tone. The user watches for this. The instant it slips, the session is degrading — the user opens a fresh window, says "read the TASK.md and continue", and resumes clean. So: never drop the name, never alter it. A consistent name = a grounded session.
+
 ### How to find the name
 
 Run these in order, stop at the first hit:

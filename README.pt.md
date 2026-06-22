@@ -27,6 +27,8 @@ Breno: o bug de auth está em middleware.ts:42 — o token expiry usa < em vez d
 
 A IA detecta seu nome automaticamente via `git config user.name` ou seu `CLAUDE.md`. Se não encontrar, pergunta uma vez.
 
+**Por que isso importa — é um detector de alucinação.** Quando a IA começa a derivar ou alucinar, o nome é a primeira coisa que quebra: some, muda, ou fica estranho. No momento que você notar isso, a sessão está degradando. Pare, abra uma nova janela, diga *"leia o TASK.md e continue"*, e retome limpo de onde parou.
+
 ### 2. Idioma da Pergunta
 A IA sempre responde no idioma em que você perguntou. Pergunta em português, recebe em português. Pergunta em inglês, recebe em inglês. Sem configuração. Sem drift.
 

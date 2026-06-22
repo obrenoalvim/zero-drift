@@ -27,6 +27,8 @@ Breno: the auth bug is in middleware.ts:42 — token expiry uses < instead of <=
 
 The AI detects your name automatically from `git config user.name` or your `CLAUDE.md`. If it can't find it, it asks once.
 
+**Why this matters — it's a hallucination detector.** When the AI starts drifting or hallucinating, the name is the first thing to break: it gets dropped, changed, or feels off. The moment you notice that, the session is degrading. Stop, open a new window, say *"read the TASK.md and continue"*, and pick up clean from where you left off.
+
 ### 2. Language Match
 The AI always replies in the language you asked in. Ask in Portuguese, get Portuguese. Ask in English, get English. No configuration. No drift.
 
