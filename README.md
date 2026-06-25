@@ -1,5 +1,7 @@
 # Zero Drift
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 [🇧🇷 Leia em Português](README.pt.md)
 
 A Claude Code skill that keeps your AI grounded across long sessions. Two rules, applied from the first response to the last.
