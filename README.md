@@ -183,6 +183,13 @@ Yes. Put the snippet from [Manual alternatives](#manual-alternatives-no-plugin) 
 
 ---
 
+## More Claude Code skills by the same author
+
+- [**keep-improving**](https://github.com/obrenoalvim/keep-improving): an autonomous improvement loop with a ten-role review panel.
+- [**findable**](https://github.com/obrenoalvim/findable): SEO and GEO research that applies the safe fixes.
+- [**unblock**](https://github.com/obrenoalvim/unblock): a 13-tool free fallback chain for web research that keeps trying.
+- [**no-watermark**](https://github.com/obrenoalvim/no-watermark): detects and removes invisible Unicode watermarks from text.
+
 ## Contributing
 
 Found a gap in the rules, or an edge case the skill misses? Open a PR. The SKILL.md is the source of truth. See [CONTRIBUTING.md](CONTRIBUTING.md) and the [changelog](CHANGELOG.md).

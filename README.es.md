@@ -183,6 +183,13 @@ Sí. Pon el fragmento de [Alternativas manuales](#alternativas-manuales-sin-plug
 
 ---
 
+## Más skills para Claude Code del mismo autor
+
+- [**keep-improving**](https://github.com/obrenoalvim/keep-improving): un bucle autónomo de mejora con un panel de revisión de diez roles.
+- [**findable**](https://github.com/obrenoalvim/findable): investigación de SEO y GEO que aplica las correcciones seguras.
+- [**unblock**](https://github.com/obrenoalvim/unblock): una cadena gratuita de 13 herramientas para investigación web que sigue intentando.
+- [**no-watermark**](https://github.com/obrenoalvim/no-watermark): detecta y elimina marcas de agua Unicode invisibles en el texto.
+
 ## Contribuir
 
 ¿Encontraste un hueco en las reglas o un caso que la skill no cubre? Abre un PR. El SKILL.md es la fuente de verdad. Consulta el [CONTRIBUTING.md](CONTRIBUTING.md) y el [changelog](CHANGELOG.md).
